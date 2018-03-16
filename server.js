@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs'); //handlebars template engine
 const fs = require('fs');
 
+//for heroku, set port variable. if app is not running on heroku, set to 3000
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -64,8 +67,6 @@ app.get('/bad', (request, response) => {
   });
 });
 
-const listeningPort=3000;
-
-app.listen(listeningPort, () => {
-  console.log(`Server listening on port ${listeningPort}`);
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
