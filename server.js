@@ -5,6 +5,7 @@ const fs = require('fs');
 //for heroku, set port variable. if app is not running on heroku, set to 3000
 const port = process.env.PORT || 3000;
 
+//create express app
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -59,8 +60,12 @@ app.get('/about', (request, response) => {
 app.get('/projects', (request, response) => {
   response.render('projects.hbs', {
     pageTitle: 'Projects'
-  })
-})
+  });
+});
+
+app.get('/test', (request,response) => {
+  response.send(request.headers);
+});
 
 function contact(request, response) {
   response.send('Contact page');
